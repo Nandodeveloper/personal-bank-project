@@ -1,4 +1,5 @@
-import java.sql.SQLOutput;
+import br.com.nandodeveloper.bank.models.Account;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -24,32 +25,21 @@ public class Main {
 
         System.out.println("Registrando...");
 
+        Account account = new Account(name, age, cpf, gender, 0);
 
+        String menuAcoes = "\n1- User details\n" + "2- Current account\n" +
+                "3- Depositar\n" + "4- Sacar\n" + "5- Extrato\n" + "6- Exit";
 
         System.out.println("Olá, " + name + ", seja bem vindo ao banco!\n");
         int acao = 0;
         while (acao != 6) {
-            Account account = new Account(name, age, cpf, gender);
-
-            String menuUser = asterisco + " User Details " + asterisco +
-                    "\n\nUsername: " + account.getName() + " (Age: " + account.getAge() + ")" +
-                    "\nCpf: " + account.getCpf() + "\nGender: " + account.getGender();
-
-            String menuConta = asterisco + " Your Account " + asterisco +
-                    "\n\nUsername: " + account.getName() +
-                    "\nAccount number: " + account.getAccountNumber() +
-                    "\nAgency: " + account.getAgency() +
-                    "\nBalance: " + account.getBalance();
-
-            String menuAcoes = "\n1- User details\n" + "2- Current account\n" +
-                    "3- Depositar\n" + "4- Sacar\n" + "5- Extrato\n" + "6- Exit";
-
             System.out.println(menuAcoes);
             acao = scanner.nextInt();
+
             if (acao == 1) {
-                System.out.println(menuUser);
+                account.menuUser(account);
             } else if (acao == 2) {
-                System.out.println(menuConta);
+                account.menuConta(account);
             } else if (acao == 3) {
                 System.out.println("Digite o valor que deseja depositar: ");
                 double deposito = scanner.nextDouble();

@@ -1,3 +1,5 @@
+package br.com.nandodeveloper.bank.models;
+
 public class User {
     private String name;
     private String cpf;
@@ -34,5 +36,12 @@ public class User {
 
     public String getGender() {
         return gender;
+    }
+
+    public void menuUser(User user){
+        String asterisco = "*********************************";
+        System.out.println(asterisco + " User Details " + asterisco);
+        System.out.println("Username: " + user.getName() + " (Age: " + user.getAge() + ")");
+        System.out.println("Cpf: " + user.getCpf() + "\nGender: " + user.getGender());
     }
 }
