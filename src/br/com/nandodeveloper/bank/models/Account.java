@@ -1,23 +1,15 @@
 package br.com.nandodeveloper.bank.models;
 
-public class Account extends User {
-    private String email;
-    private String pass;
-    private int accountNumber;
+import br.com.nandodeveloper.bank.validation.MinorCheck;
+
+public class Account extends User implements MinorCheck{
+    private String accountNumber;
     private double balance = 0;
     private int agency;
 
     public Account(String name, int age, String cpf, String gender, double initialBalance) {
         super(name, age, cpf, gender);
         this.balance = initialBalance;
-    }
-
-    public String getPass() {
-        return pass;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
     }
 
     public double getBalance() {
@@ -28,47 +20,61 @@ public class Account extends User {
         return agency;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getAccountNumber() {
+    public String getAccountNumber() {
         return accountNumber;
     }
 
     public void withdraw(double value) {
         if(value > balance) {
-            System.out.println("Saldo insuficiente.\n");
+            System.out.println("Insufficient balance.\n");
         } else if (value == 0){
-            System.out.println("Digite algum valor para sacar.\n");
+            System.out.println("Enter an amount to withdraw.\n");
         } else {
             balance -= value;
-            System.out.println("Saque realizado com sucesso.");
-            System.out.println("Saldo atual: " + balance);
+            System.out.println("Withdrawal successful.");
+            System.out.println("Current balance: " + balance);
             System.out.println();
         }
     }
     public void deposit(double value) {
         if(value > 0) {
             balance += value;
-            System.out.println("Deposito realizado com sucesso.");
-            System.out.println("Saldo atual: " + balance);
+            System.out.println("Deposit successful.");
+            System.out.println("Current balance: " + balance);
             System.out.println();
         } else {
-            System.out.println("Digite um valor maior que 0.\n");
+            System.out.println("Enter a value greater than 0.\n");
         }
     }
 
-    public void menuConta(Account account) {
-        String asterisco = "*********************************";
-        System.out.println(asterisco + " Your Account " + asterisco);
+    public void menuAccount(Account account) {
+        String asterisk = "*********************************";
+        System.out.println(asterisk + " Your Account " + asterisk);
         System.out.println("\nUsername: " + account.getName());
         System.out.println("Account number: " + account.getAccountNumber());
         System.out.println("Agency: " + account.getAgency());
         System.out.println("Balance: " + account.getBalance());
+    }
+    public void genAgency(Account account) {
+        double genAgency = Math.random() * 10000;
+        account.agency = (int) genAgency;
+    }
+    public void genAccountNumber(Account account) {
+        double genA1 = Math.random() * 1000000;
+        double genA2 = Math.random() * 10;
+        int genA1Int = (int) genA1;
+        int genA2Int = (int) genA2;
+        String accountNumberS = genA1Int + "-" + genA2Int;
+        account.accountNumber = accountNumberS;
+    }
+
+    @Override
+    public void isMinor(Account account) {
+        if (account.getAge() >= 18) {
+            System.out.println("--Authentication completed--");
+        } else {
+            System.out.println("You must be of legal age to register a bank account.");
+            System.exit(0);
+        }
     }
 }
