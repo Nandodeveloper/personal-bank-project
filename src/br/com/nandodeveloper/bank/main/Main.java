@@ -23,6 +23,7 @@ public class Main {
         System.out.println("Enter your CPF: ");
         String cpf  = scanner.next();
         account.setCpf(cpf);
+
         System.out.println("Enter your gender: ");
         String gender = scanner.next();
         account.setGender(gender);
@@ -31,8 +32,14 @@ public class Main {
 
         account.genAgency(account);
         account.genAccountNumber(account);
-        String actionsMenu = "\n1- User details\n" + "2- Current account\n" +
-                "3- Deposit\n" + "4- Withdraw\n" + "5- Statement\n" + "6- Exit";
+        String actionsMenu = """
+                
+                1- User details
+                2- Current account
+                3- Deposit
+                4- Withdraw
+                5- Statement
+                6- Exit""";
 
         System.out.println("Hello, " + name + ", welcome to the bank!\n");
         int action = 0;

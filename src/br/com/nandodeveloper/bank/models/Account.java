@@ -65,8 +65,7 @@ public class Account extends User implements MinorCheck{
         double genA2 = Math.random() * 10;
         int genA1Int = (int) genA1;
         int genA2Int = (int) genA2;
-        String accountNumberS = genA1Int + "-" + genA2Int;
-        account.accountNumber = accountNumberS;
+        account.accountNumber = genA1Int + "-" + genA2Int;
     }
 
     @Override
