@@ -6,10 +6,16 @@ public class User {
     private int age;
     private String gender;
 
-    public User(String name, int age, String cpf, String gender) {
+    public User(String name, int age) {
         this.name = name;
         this.age = age;
+    }
+
+    public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public void setGender(String gender) {
         this.gender = gender;
     }
 

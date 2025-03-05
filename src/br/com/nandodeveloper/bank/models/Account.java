@@ -7,8 +7,8 @@ public class Account extends User implements MinorCheck{
     private double balance = 0;
     private int agency;
 
-    public Account(String name, int age, String cpf, String gender, double initialBalance) {
-        super(name, age, cpf, gender);
+    public Account(String name, int age, double initialBalance) {
+        super(name, age);
         this.balance = initialBalance;
     }
 
@@ -36,6 +36,7 @@ public class Account extends User implements MinorCheck{
             System.out.println();
         }
     }
+
     public void deposit(double value) {
         if(value > 0) {
             balance += value;
@@ -70,9 +71,7 @@ public class Account extends User implements MinorCheck{
 
     @Override
     public void isMinor(Account account) {
-        if (account.getAge() >= 18) {
-            System.out.println("--Authentication completed--");
-        } else {
+        if (account.getAge() < 18) {
             System.out.println("You must be of legal age to register a bank account.");
             System.exit(0);
         }

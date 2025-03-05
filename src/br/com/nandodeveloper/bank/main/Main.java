@@ -1,3 +1,5 @@
+package br.com.nandodeveloper.bank.main;
+
 import br.com.nandodeveloper.bank.models.Account;
 
 import java.util.ArrayList;
@@ -15,15 +17,17 @@ public class Main {
         System.out.println("Enter your age: ");
         int age = scanner.nextInt();
 
+        Account account = new Account(name, age, 0);
+        account.isMinor(account);
+
         System.out.println("Enter your CPF: ");
         String cpf  = scanner.next();
-
+        account.setCpf(cpf);
         System.out.println("Enter your gender: ");
         String gender = scanner.next();
+        account.setGender(gender);
 
-        Account account = new Account(name, age, cpf, gender, 0);
         System.out.println("Registering...\n");
-        account.isMinor(account);
 
         account.genAgency(account);
         account.genAccountNumber(account);
@@ -49,7 +53,11 @@ public class Main {
                 System.out.println("Enter the amount you want to withdraw: ");
                 double withdrawal = scanner.nextDouble();
                 account.withdraw(withdrawal);
-                statement.add("Withdrawal: " + withdrawal);
+                if (withdrawal > account.getBalance()) {
+                    statement.add("WITHDRAWAL DENIED: " + withdrawal);
+                } else {
+                    statement.add("Withdrawal: " + withdrawal);
+                }
             } else if (action == 5) {
                 System.out.println(statement);
             } else if (action == 6) {
